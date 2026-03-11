@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #060606;
+  --gold: #d4af37;
+  --gold-soft: #f3d77a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, rgba(212, 175, 55, 0.12), transparent 30%),
+    radial-gradient(circle at bottom, rgba(255, 255, 255, 0.03), transparent 30%),
+    var(--bg);
+  color: #f5f1e8;
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+/* PRINT MODE */
+
+@media print {
+  html,
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-receipt,
+  .print-receipt * {
+    visibility: visible;
+  }
+
+  .print-receipt {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 420px;
+    max-width: 420px;
+    background: white !important;
+    color: #111 !important;
+    border: 1px solid #c8a94a !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-receipt .text-white,
+  .print-receipt .text-white\/80,
+  .print-receipt .text-white\/50,
+  .print-receipt .text-white\/40 {
+    color: #111 !important;
+  }
+
+  .print-receipt .text-\[\#f3d77a\],
+  .print-receipt .text-\[\#f3d77a\]\/80 {
+    color: #8a6a12 !important;
+  }
+
+  .print-receipt .border-white\/10,
+  .print-receipt .border-\[\#d4af37\]\/25,
+  .print-receipt .border-\[\#d4af37\]\/30,
+  .print-receipt .border-\[\#d4af37\]\/40 {
+    border-color: #c8a94a !important;
+  }
+
+  .print-receipt .bg-black\/70,
+  .print-receipt .bg-black\/40,
+  .print-receipt .bg-white\/\[0\.03\],
+  .print-receipt .bg-\[\#d4af37\]\/10 {
+    background: white !important;
+  }
+
+  .print-receipt button {
+    display: none !important;
+  }
 }
